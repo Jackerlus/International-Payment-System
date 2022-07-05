@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glassfish-web-app>
+    <security-role-mapping>
+        <role-name>users</role-name>
+        <group-name>users</group-name>
+    </security-role-mapping>
+    <security-role-mapping>
+        <role-name>admins</role-name>
+        <group-name>admins</group-name>
+    </security-role-mapping>
+</glassfish-web-app>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/DTD/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Payment Service</title>
+        <style>
+            * {
+                font-family: arial;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h2>Welcome to the Payment Service</h2>
+        <p>Please log in or register.</p>
+        <br />
+        <h:form>
+            <p:commandButton action="#{navigationController.login}"
+                             value="Login" />
+            <p:commandButton action="#{navigationController.register}"
+                             value="Register" />
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns:xi="http://www.w3.org/2001/XInclude"  xmlns="http://java.sun.com/xml/ns/javaee" 
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+   http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd" 
+   version="2.0"> 
+    <navigation-rule> 
+        <from-view-id>/index.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.login}</from-action> 
+           <from-outcome>login</from-outcome> 
+           <to-view-id>/login.xhtml</to-view-id> 
+        </navigation-case>
+        
+        <navigation-case>
+           <from-action>#{navigationController.register}</from-action> 
+           <from-outcome>register</from-outcome> 
+           <to-view-id>/register.xhtml</to-view-id> 
+        </navigation-case> 
+        
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/users/home.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.transfer}</from-action>
+           <from-outcome>transfer</from-outcome> 
+           <to-view-id>/users/transfer.xhtml</to-view-id> 
+        </navigation-case>
+        
+        <navigation-case>
+           <from-action>#{navigationController.request}</from-action>
+           <from-outcome>request</from-outcome>
+           <to-view-id>/users/request.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+           <from-action>#{navigationController.adminhome}</from-action>
+           <from-outcome>adminhome</from-outcome>
+           <to-view-id>/admins/adminhome.xhtml</to-view-id> 
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/users/transactionsuccess.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/users/transactionfailure.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/loginerror.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.index}</from-action> 
+           <from-outcome>index</from-outcome> 
+           <to-view-id>/index.xhtml</to-view-id> 
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/users/request.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/users/transfer.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/admins/adminhome.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+        
+        <navigation-case>
+           <from-action>#{navigationController.adminregister}</from-action> 
+           <from-outcome>adminregister</from-outcome> 
+           <to-view-id>/admins/adminregister.xhtml</to-view-id> 
+        </navigation-case>
+
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/admins/adminregister.xhtml</from-view-id>
+        
+        <navigation-case>
+           <from-action>#{navigationController.adminhome}</from-action> 
+           <from-outcome>adminhome</from-outcome> 
+           <to-view-id>/admins/adminhome.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+           <from-action>#{navigationController.home}</from-action> 
+           <from-outcome>home</from-outcome> 
+           <to-view-id>/users/home.xhtml</to-view-id> 
+        </navigation-case>
+        
+    </navigation-rule>
+    
+</faces-config>

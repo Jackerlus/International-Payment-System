@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Payment Service Registration</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:outputLabel>Username: </p:outputLabel>
+            <h:inputText id="username" label="Username" maxlength="30" required="true" requiredMessage="Username is required"
+                         title="Username" value="#{userController.username}"/>
+            <br/><br/>
+            <p:outputLabel>Password: </p:outputLabel>
+            <p:password id="password" value="#{userController.password}" match="confirmPassword" />
+            <p:outputLabel> Confirm password: </p:outputLabel>
+            <p:password id="confirmPassword" value="#{userController.password}" />
+            <br/><br/>
+            <p:outputLabel>Currency: </p:outputLabel>
+            <p:selectOneListbox value="#{userController.currencyType}">
+                <f:selectItem itemValue = "GBP" itemLabel = "GBP" /> 
+                <f:selectItem itemValue = "USD" itemLabel = "USD" />
+                <f:selectItem itemValue = "EUR" itemLabel = "EUR" />
+            </p:selectOneListbox>
+            <p:commandButton title="Submit Registration"
+                             label="Submit Registration" type="submit" value="Submit"
+                             action="#{userController.registerUser('users')}"/>
+        </h:form>
+    </h:body>
+</html>

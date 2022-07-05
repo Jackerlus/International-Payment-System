@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Payment Service Admin</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:commandButton action="#{navigationController.home()}" value="Home" ajax="false"/>
+            <p:commandButton action="#{navigationController.adminregister()}" value="Register new admin" />
+            <p:commandButton action="#{loginController.logout()}" value="Log out" />
+        </h:form>
+        <p:outputLabel value="All Users" />
+        <p:dataTable value="#{userController.allUsers}" var="user">
+            <p:column>
+                <f:facet name="header">Username</f:facet>
+                #{user.username}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Balance</f:facet>
+                #{user.currencyAmount}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Currency</f:facet>
+                #{user.currencyType}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Permissions</f:facet>
+                #{user.role}
+            </p:column>
+        </p:dataTable>
+        <br /><br />
+        <p:outputLabel value="All Transactions" />
+        <p:dataTable value="#{transactionController.allTransactions}" var="trans">
+            <p:column>
+                <f:facet name="header">Sent From</f:facet>
+                #{trans.sourceUsername}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Sent To</f:facet>
+                #{trans.targetUsername}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Money Sent</f:facet>
+                #{trans.currencyAmount} #{trans.sourceCurrency}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Money Received</f:facet>
+                #{transactionController.callREST(trans.sourceCurrency, trans.targetCurrency, trans.currencyAmount)} #{trans.targetCurrency}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Date</f:facet>
+                #{trans.dateTime}
+            </p:column>
+        </p:dataTable>
+        <br /><br />
+        <p:outputLabel value="All Requests" />
+        <p:dataTable value="#{requestController.allRequests}" var="req">
+            <p:column>
+                <f:facet name="header">Sent From</f:facet>
+                #{req.source}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Sent To</f:facet>
+                #{req.target}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Original Amount Requested</f:facet>
+                #{req.amount} #{req.sourceCurrency}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Converted Amount Requested</f:facet>
+                #{transactionController.callREST(req.sourceCurrency, req.targetCurrency, req.amount)} #{req.targetCurrency}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Date</f:facet>
+                #{req.dateTime}
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>

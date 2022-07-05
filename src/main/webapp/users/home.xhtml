@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Payment Service Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h3>Payment Service Home</h3>
+        <h:form>
+            <p:commandButton action="#{navigationController.transfer()}"
+                             value="Transfer" /> 
+            <p:commandButton action="#{navigationController.request()}"
+                             value="Request payment" />
+            <p:commandButton action="#{navigationController.adminhome()}"
+                             value="Admin Area" ajax="false" />
+            <p:commandButton action="#{loginController.logout()}" value="Log out" />
+        </h:form>
+        
+        <c:set var="user" value="#{userController.getCurrentUsername()}"/>
+        <h4>Pending payment requests: </h4>
+        <h:form>
+            <p:dataTable value="#{requestController.getRequestsByTarget(user)}" var="req">
+                <p:column>
+                    <f:facet name="header">From</f:facet>
+                    #{req.source}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Amount</f:facet>
+                    #{req.amount} #{req.targetCurrency}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Date</f:facet>
+                    #{req.dateTime}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Pay request</f:facet>
+                    <p:commandButton value="Pay request" action="#{
+                         transactionController.createRequestTransaction(req.id,
+                             user, req.source, req.targetCurrency,
+                             req.sourceCurrency, req.amount)}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+        
+        <h4>Transactions: </h4>
+        <p:dataTable value="#{transactionController.getTransactionsByUser(user)}" var="transaction">
+            <p:column>
+                <f:facet name="header">From</f:facet>
+                #{transaction.sourceUsername}
+            </p:column>
+            <p:column>
+                <f:facet name="header">To</f:facet>
+                #{transaction.targetUsername}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Amount</f:facet>
+                #{transaction.currencyAmount} #{transaction.sourceCurrency}
+            </p:column>
+            <p:column>
+                <f:facet name="header">Date</f:facet>
+                #{transaction.dateTime}
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
